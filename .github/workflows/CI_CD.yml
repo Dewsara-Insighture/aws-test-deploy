@@ -41,7 +41,7 @@ jobs:
       run : sam validate 
 
     - name: Build
-      run : sam build
+      run : npm install esbuild -g  && sam build
 
     - name: Deploy to Development
       run: sam deploy --stack-name  ${{ secrets.STACK_NAME }} --capabilities CAPABILITY_IAM
