@@ -44,4 +44,4 @@ jobs:
       run : npm install esbuild -g  && sam build
 
     - name: Deploy to Development
-      run: sam deploy --stack-name  ${{ secrets.STACK_NAME }} --capabilities CAPABILITY_IAM
+      run: sam deploy --stack-name  ${{ secrets.STACK_NAME }} --capabilities CAPABILITY_IAM --resolve-s3 
