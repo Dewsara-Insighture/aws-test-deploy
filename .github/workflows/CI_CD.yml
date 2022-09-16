@@ -15,6 +15,7 @@ permissions:
 
 jobs:
 
+
  deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -36,7 +37,11 @@ jobs:
         role-session-name: OIDCSession
         aws-region: ${{ env.AWS_REGION }}
         
+    - name: Validate
+      run : sam validate 
+
+    - name: Build
+      run : sam build
+
     - name: Deploy to Development
-      env:
-        STACK_NAME: ${{ secrets.STACK_NAME }}
-      run: sam validate && sam build && sam deploy --stack-name $(STACK_NAME)
+      run: sam deploy --stack-name  ${{ secrets.STACK_NAME }} --capabilities CAPABILITY_IAM
